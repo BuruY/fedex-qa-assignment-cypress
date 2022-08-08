@@ -2,6 +2,7 @@ import {Page} from './page';
 import {SearchComponent} from './components/search.component';
 import {CharacterComponent} from './components/character.component';
 import Chainable = Cypress.Chainable;
+import {PlanetComponent} from './components/planet.component';
 
 export class AppPage extends Page {
   public constructor() {
@@ -17,11 +18,19 @@ export class AppPage extends Page {
   }
 
   get peopleSearchResult(): PeopleResult {
-    return new PeopleResult(cy.get(this.selfAlias).find('div[data-test="peopleResult]'));
+    return new PeopleResult(cy.get(this.selfAlias).find('div[data-test="peopleResult"]'));
   }
 
   get planetSearchResult(): PlanetResult {
-    return new PlanetResult(cy.get(this.selfAlias).find('div[data-test="planetResult]'));
+    return new PlanetResult(cy.get(this.selfAlias).find('div[data-test="planetResult"]'));
+  }
+
+  get loading(): Chainable<JQuery> {
+    return cy.get(this.selfAlias).find('div[data-test="loading"]');
+  }
+
+  get notFound(): Chainable<JQuery> {
+    return cy.get(this.selfAlias).find('div[data-test="notFound"]');
   }
 
 }
@@ -41,10 +50,6 @@ class PeopleResult extends Page {
     return new CharacterComponent(cy.get(this.selfAlias).find(this.characterSelector).eq(row));
   }
 
-  getCharacterByName(name: string): CharacterComponent {
-    return new CharacterComponent(cy.get(this.selfAlias).find(this.characterSelector).contains(name));
-  }
-
 }
 
 class PlanetResult extends Page {
@@ -58,11 +63,7 @@ class PlanetResult extends Page {
     return cy.get(this.selfAlias).find(this.characterSelector);
   }
 
-  getPlanetByIndex(row: number): CharacterComponent {
-    return new CharacterComponent(cy.get(this.selfAlias).find(this.characterSelector).eq(row));
-  }
-
-  getPlanetByName(name: string): CharacterComponent {
-    return new CharacterComponent(cy.get(this.selfAlias).find(this.characterSelector).contains(name));
+  getPlanetByIndex(row: number): PlanetComponent {
+    return new PlanetComponent(cy.get(this.selfAlias).find(this.characterSelector).eq(row));
   }
 }
