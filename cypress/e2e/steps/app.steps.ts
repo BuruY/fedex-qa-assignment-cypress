@@ -1,12 +1,12 @@
-import { Given } from "cucumber";
+import {Given} from 'cucumber';
 
-chai.use(require("chai-as-promised"));
+chai.use(require('chai-as-promised'));
 
 Given(
-  "The app is open on {string}",
-  { timeout: 25 * 1000 },
+  'The app is open on {string}',
+  {timeout: 25 * 1000},
   async (env: string) => {
-    //Opens App
+    // Opens App
     console.log(env);
   }
 );

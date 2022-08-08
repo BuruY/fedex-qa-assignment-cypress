@@ -13,14 +13,14 @@
       <div *ngIf="isNotFound(searchResult, isLoading)">Not found.</div>
 
       <div *ngIf="!isLoading">
-        <div *ngIf="searchType === 'people'">
+        <div *ngIf="searchType === 'people'" data-test="peopleResult">
           <div *ngFor="let character of searchResult">
             <app-character [character]="character"></app-character>
             <br>
           </div>
         </div>
 
-        <div *ngIf="searchType === 'planets'">
+        <div *ngIf="searchType === 'planets'" data-test="planetResult">
           <div *ngFor="let planet of searchResult">
             <app-planet [planet]="planet"></app-planet>
             <br>

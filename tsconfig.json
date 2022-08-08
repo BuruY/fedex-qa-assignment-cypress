@@ -14,11 +14,10 @@
     ],
     "lib": [
      "es2018",
-     "dom",
+     "dom"
     ],
-    
     "noUnusedLocals": true,
     "noUnusedParameters": true
-    
+
   }
 }
