@@ -8,16 +8,14 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "report:merge" : "mochawesome-merge --reportDir output/cypress/report/.jsons/mochawesome*.json > output/cypress/report/report.json",
+    "report:merge" : "mochawesome-merge --files output/cypress/report/.jsons/mochawesome*.json > output/cypress/report/report.json",
     "report:marge" : "marge output/cypress/report/report.json -o output/cypress/report",
     "report:generate": "npm run report:merge && npm run report:marge",
     "report:clean": "rm -rf ./output",
     "pree2e": "npm run report:clean",
     "e2e": "ng e2e",
-    "poste2e": "npm run report:generate",
     "pree2e-watch": "npm run report:clean",
-    "e2e-watch": "ng run tnt-assignment-e2e:e2e-watch",
-    "poste2e-watch": "npm run report:generate"
+    "e2e-watch": "ng run tnt-assignment-e2e:e2e-watch"
   },
   "private": true,
   "dependencies": {
