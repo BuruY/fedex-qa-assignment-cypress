@@ -11,7 +11,7 @@ Good luck!
 
 ## Tips
 
-* Choose an IDE to your liking (We recommend the Free Micrsoft Visual Studio Code)
+* Choose an IDE to your liking (We recommend the Free Microsoft Visual Studio Code)
 * It should not take more than a three to four hours to demonstrate your skills with this project
 * If you get stuck (especially with the app itself or installations), please contact us
 * Refactor and restructure anything in the project if you think that works better
@@ -33,10 +33,10 @@ Please provide your documentation in the [ASSESSMENT-SOLUTION.MD](./ASSESSMENT-S
 4. Write test automation scripts using below options
 4.1 **using Cucumber and cypress (BDD approach)** that would document the user stories, verify the application features, whilst also including comments on code you write
 4.2  **using mocha and cypress (describe and IT block)**
-5. add test reports support to show test exceution status
+5. add test reports support to show test execution status
 6. Please report any bugs or anomalies you will find
 7. Also note that the sourcecode of the app is running on your machine so you have full access to make your test code as efficient as possible
-8. In angular.json file. Fix tnt-assignment-e2e block by using cypress builder if you want to run cypess test using command `ng e2e`
+8. In angular.json file. Fix tnt-assignment-e2e block by using cypress builder if you want to run cypress test using command `ng e2e`
 
 ### Done? -> The feedback
 

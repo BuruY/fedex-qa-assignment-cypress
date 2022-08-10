@@ -1,12 +1,12 @@
-import {AppPage} from '../pages/app.page';
-import {equalExtractedValue} from '../util/matcher.util';
-import {interceptGetSwapiPeople, interceptGetSwapiPlanets} from '../intercept/swapi.intercept';
+import {AppPage} from '../../pages/app.page';
+import {equalExtractedValue} from '../../util/matcher.util';
+import {interceptGetSwapiPeople, interceptGetSwapiPlanets} from '../../intercept/swapi.intercept';
 
 describe('Running the star-wars app', () => {
   let app: AppPage;
 
   beforeEach(() => {
-    cy.visit('/');
+    cy.visit(Cypress.env('HOMEPAGE'));
     app = new AppPage();
   });
 
@@ -31,19 +31,17 @@ describe('Running the star-wars app', () => {
   });
 
   it('Should switch between planets and people', () => {
-    const planet = 'Tatooine';
-    app.searchForm.planetsRadioInput.click();
-    app.searchForm.searchInput.type(planet);
+    const planetKeyword = 'Tatooine';
+
     const planetsAlias = interceptGetSwapiPlanets();
-    app.searchForm.submitButton.click();
-
+    cy.searchPlanet(planetKeyword);
     cy.wait(planetsAlias);
-    app.planetSearchResult.getPlanetByIndex(0).nameHeading.should(equalExtractedValue(planet));
+    app.planetSearchResult.getPlanetByIndex(0).nameHeading.should(equalExtractedValue(planetKeyword));
 
-    app.searchForm.peopleRadioInput.click();
     const peopleAlias = interceptGetSwapiPeople();
-    app.searchForm.searchInput.type('{enter}');
+    cy.searchPeople(null);
     cy.wait(peopleAlias);
+
     app.notFound.should(equalExtractedValue('Not found.'));
   });
 

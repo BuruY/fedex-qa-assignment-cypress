@@ -91,47 +91,15 @@
               "**/node_modules/**"
             ]
           }
-        },
-        "cypress-run": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "tnt-assignment:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "tnt-assignment:serve:production"
-            }
-          }
-        },
-        "cypress-open": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "watch": true,
-            "headless": false
-          }
-        },
-        "e2e": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "tnt-assignment:serve",
-            "watch": true,
-            "headless": false
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "tnt-assignment:serve:production"
-            }
-          }
         }
       }
     },
     "tnt-assignment-e2e": {
-      "root": "",
-      "sourceRoot": "cypress",
+      "root": "./",
       "projectType": "application",
       "architect": {
         "e2e": {
-          "builder": "@cypress/schematic:cypress",
+          "builder": "ngx-cypress-builder:cypress",
           "options": {
             "devServerTarget": "tnt-assignment:serve"
           },
@@ -141,33 +109,16 @@
             }
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        "e2e-watch": {
+          "builder": "ngx-cypress-builder:cypress",
           "options": {
-            "tsConfig": [
-              "cypress/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "cypress-run": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "devServerTarget": "tnt-assignment:serve"
+            "devServerTarget": "tnt-assignment:serve",
+            "mode": "browser"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "tnt-assignment-e2e:serve:production"
+              "devServerTarget": "tnt-assignment:serve:production"
             }
-          }
-        },
-        "cypress-open": {
-          "builder": "@cypress/schematic:cypress",
-          "options": {
-            "watch": true,
-            "headless": false
           }
         }
       }

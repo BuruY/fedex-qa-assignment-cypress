@@ -1,5 +1,6 @@
 import {AppPage} from './pages/app.page';
 import Chainable = Cypress.Chainable;
+import 'cypress-mochawesome-reporter/register';
 
 declare global {
   namespace Cypress {
@@ -10,23 +11,17 @@ declare global {
   }
 }
 
-const searchPeople = (name: string) => {
+const searchPeople = (name: string | undefined) => {
   const appPage = new AppPage();
   search(appPage, appPage.searchForm.peopleRadioInput, name);
-
-  appPage.planetSearchResult.self.should('not.exist');
-  appPage.peopleSearchResult.self.should('be.visible');
 };
 
-const searchPlanet = (name: string) => {
+const searchPlanet = (name: string | undefined) => {
   const appPage = new AppPage();
   search(appPage, appPage.searchForm.planetsRadioInput, name);
-
-  appPage.peopleSearchResult.self.should('not.exist');
-  appPage.planetSearchResult.self.should('be.visible');
 };
 
-const search = (appPage: AppPage, radioToBeChecked: Chainable<JQuery>, name: string) => {
+const search = (appPage: AppPage, radioToBeChecked: Chainable<JQuery>, keyword: string | undefined) => {
   radioToBeChecked.then(input => {
     if (!input.attr('checked')) {
       cy.wrap(input).click();
@@ -34,9 +29,10 @@ const search = (appPage: AppPage, radioToBeChecked: Chainable<JQuery>, name: str
   });
 
   const searchForm = appPage.searchForm;
-  searchForm.searchInput.clear();
-  searchForm.searchInput.type(name);
-
+  if (keyword) {
+    searchForm.searchInput.clear();
+    searchForm.searchInput.type(keyword);
+  }
   searchForm.submitButton.click();
 };
 
