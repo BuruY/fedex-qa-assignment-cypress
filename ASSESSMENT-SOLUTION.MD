@@ -22,7 +22,8 @@ This command will do 2 things:
 * Start Cypress in 'open' mode.
 
 ### output
-Screenshots (for failing tests only) and videos (for all tests) will be saved in the `/output/cypress` directory.
+Screenshots (for failing tests only), videos (for all tests) and mochawesome reporter will be saved in the `/output/cypress` directory. These are generated after test execution.
+When the tests are run using the npm command, the HTML report will be generated and located in `/output/cypress/report`.
 
 ### result
 There are 12 tests (for both mocha and cucumber) and 11 of them are passing.
